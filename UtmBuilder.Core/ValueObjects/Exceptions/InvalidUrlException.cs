@@ -1,4 +1,5 @@
 using System.Text.RegularExpressions;
+using UtmBuilder.Core.Extentions;
 
 namespace UtmBuilder.Core.ValueObjects.Exceptions;
 
@@ -11,7 +12,7 @@ public partial class InvalidUrlException(string message) : Exception(message) {
 
     public static void ThrowIfInvalid(string address, string message = DefaultErrorMessage) {
         
-        if(string.IsNullOrEmpty(address))
+        if(address.IsNullOrEmpty())
             throw new InvalidUrlException(message);
 
         if(!UrlRegex().IsMatch(address))

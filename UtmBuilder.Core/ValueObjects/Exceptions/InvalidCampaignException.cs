@@ -1,3 +1,5 @@
+using UtmBuilder.Core.Extentions;
+
 namespace UtmBuilder.Core.ValueObjects.Exceptions;
 
 public class InvalidCampaignException(string message = InvalidCampaignException.DefaultErrorMessage) : Exception(message) {
@@ -5,7 +7,7 @@ public class InvalidCampaignException(string message = InvalidCampaignException.
     private const string DefaultErrorMessage = "Invalid campaign parameters";
 
     public static void ThrowIfNull(string? item, string message = DefaultErrorMessage) {
-        if(string.IsNullOrEmpty(item))
+        if(item.IsNullOrEmpty())
             throw new InvalidCampaignException(message);
     }
 }
